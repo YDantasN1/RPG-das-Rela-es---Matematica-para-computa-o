@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>RPG das Relações</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<body>
+
+<!-- INTRO -->
+<div id="intro">
+  <div class="intro-content">
+    <h1 class="intro-title">⚔️ RPG DAS RELAÇÕES</h1>
+    <p class="intro-sub">Calcule. Conecte. Conquiste.</p>
+    <p class="press-start">PRESSIONE QUALQUER TECLA PARA CONTINUAR</p>
+  </div>
+</div>
+
+<!-- MENU -->
+<div id="menu" class="hidden">
+  <div class="menu-overlay"></div>
+
+  <div class="menu-panel">
+    <div class="menu-buttons">
+     <button class="pixel-btn easy" data-level="facil">FÁCIL</button>
+     <button class="pixel-btn normal" data-level="normal">NORMAL</button>
+     <button class="pixel-btn hard" data-level="dificil">DIFÍCIL</button>
+    </div>
+  </div>
+</div>
+
+<audio id="clickSound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
+
+<!-- JOGO -->
+<div id="game" class="hidden">
+
+  <div class="arena">
+
+    <!-- HUD DENTRO -->
+   <div class="hud">
+
+  <div class="hp-container left">
+    <p>🧙 Herói</p>
+    <div class="bar" id="playerBarContainer">
+      <div id="playerBar"></div>
+    </div>
+  </div>
+
+  <div class="hp-container right">
+    <p>👾 Inimigo</p>
+    <div class="bar" id="enemyBarContainer">
+      <div id="enemyBar"></div>
+    </div>
+  </div>
+
+</div>
+    <!-- PERSONAGENS -->
+    <div class="character hero"><img src="./image/Personagem_Heroi.PNG" alt=""></div>
+    <div class="character enemyChar"><img src="./image/Personagem_Vilão.PNG" alt=""></div>
+
+    <!-- PERGUNTA -->
+    <div class="question-box">
+      <p id="questionText"></p>
+      <div id="diagram"></div>
+      <div id="options"></div>
+    </div>
+
+  </div>
+
+  <p id="log"></p>
+
+</div>
+
+</div>
+
+<audio id="hitSound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+<audio id="errorSound" src="https://www.soundjay.com/buttons/sounds/button-10.mp3"></audio>
+<audio id="winSound" src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3"></audio>
+
+<!-- TELA FINAL -->
+<div id="endScreen" class="hidden">
+  <div class="end-content">
+    <h1 id="endTitle"></h1>
+    <p id="endScore"></p>
+    <button class="pixel-btn" onclick="restartGame()">JOGAR NOVAMENTE</button>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

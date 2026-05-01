@@ -1,0 +1,456 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  text-align: center;
+  background: linear-gradient(#6ec6ff, #1e3c72);
+  touch-action: manipulation;
+}
+
+/* Intro */
+#intro {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+
+  background-image: url(./image/Mapa.png);
+  background-size: cover;        /* faz a imagem preencher tudo */
+  background-position: center;   /* centraliza */
+  background-repeat: no-repeat;  /* evita repetição */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.intro-content {
+  text-align: center;
+  animation: zoomIn 2s ease forwards;
+}
+
+.intro-title {
+  font-size: 48px;
+  color: gold;
+  text-shadow: 0 0 20px rgb(0, 0, 0);
+  opacity: 0;
+  animation: fadeIn 2s forwards;
+}
+
+.intro-sub {
+  margin-top: 10px;
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+  text-shadow: 0 0 20px rgb(0, 0, 0);
+  opacity: 0;
+  animation: fadeIn 2s 0.5s forwards;
+}
+
+.press-start {
+  margin-top: 40px;
+  font-size: 18px;
+  animation: blink 1s infinite;
+  text-shadow: 0 0 20px rgb(0, 0, 0);
+}
+
+@keyframes fadeIn { to { opacity: 1; } }
+@keyframes zoomIn { from { transform: scale(0.7); } to { transform: scale(1); } }
+@keyframes blink { 50% { opacity: 0; } }
+
+.intro-hide {
+  animation: fadeOutIntro 1s forwards;
+}
+
+@keyframes fadeOutIntro {
+  to { opacity: 0; transform: scale(1.2); }
+}
+
+/* Menu */
+#menu {
+  position: relative;
+  height: 100vh;
+
+  background-image: url(./image/Menu_oficial.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.menu-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+}
+
+.menu-panel {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.pixel-btn {
+  width: 260px;
+  padding: 18px;
+  font-size: 20px;
+  font-weight: bold;
+  border: 3px solid #000;
+  cursor: pointer;
+  color: white;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+.pixel-btn:hover { transform: scale(1.1); }
+
+.easy { background: linear-gradient(#4caf50, #1b5e20); }
+.normal { background: linear-gradient(#ffca28, #e65100); }
+.hard {
+  background: linear-gradient(#e53935, #7f0000);
+  animation: glow 1s infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 10px red; }
+  to { box-shadow: 0 0 25px orange; }
+}
+
+/* TRANSIÇÕES */
+.hidden { display: none !important; }
+
+.fade-out {
+  animation: fadeOutMenu 0.5s forwards;
+}
+
+@keyframes fadeOutMenu {
+  to { opacity: 0; transform: scale(1.1); }
+}
+
+/* JOGO */
+.hud {
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 10px;
+  z-index: 2;
+}
+
+.bar {
+  width: 220px;
+  height: 20px;
+  background: #444;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#playerBar { height: 100%; background: limegreen; width: 100%; }
+#enemyBar { height: 100%; background: red; width: 100%; }
+
+.arena {
+  position: relative;
+  width: 95%;
+  max-width: 900px; /* evita ficar gigante no PC */
+  height: 70dvh;
+  margin: 20px auto;
+
+  background-image: url(./image/Mapa.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border: 3px solid white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.character { position: absolute; font-size: 42px; }
+.hero { left: 80px; bottom: 60px; }
+.enemyChar { right: 80px; bottom: 60px; }
+
+.attack.hero img {
+  animation: attackHero 0.4s;
+}
+
+.attack.enemyChar img {
+  animation: attackEnemy 0.4s;
+}
+
+@keyframes attackHero {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(40px) scale(1.1); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes attackEnemy {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-40px) scale(1.1); }
+  100% { transform: translateX(0); }
+}
+
+.hit { animation: flash 0.3s; }
+
+@keyframes flash {
+  0% { background-color: rgba(255,0,0,0.5); }
+  100% { background-color: transparent; }
+}
+
+#options {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap; /* quebra linha se faltar espaço */
+  margin-top: 10px;
+}
+
+.option-btn {
+  width: 120px;
+  padding: 10px;
+  background: #00adb5;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+@media (hover: hover) {
+  .option-btn:hover {
+    background-color: #ff00ea;
+  }
+}
+
+#diagram {
+  margin: 20px auto;
+  width: 300px;
+  height: 200px;
+  background: #111;
+  border: 2px solid white;
+  border-radius: 10px;
+}
+
+/* Animação da tela */
+.shake {
+  animation: screenShake 0.4s;
+}
+
+@keyframes screenShake {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-5px, 5px); }
+  40% { transform: translate(5px, -5px); }
+  60% { transform: translate(-5px, -5px); }
+  80% { transform: translate(5px, 5px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* DANO FLUTUANTE */
+.damage {
+  position: absolute;
+  font-weight: bold;
+  font-size: 22px;
+  pointer-events: none;
+  animation: floatDamage 1s ease-out forwards;
+  text-shadow: 2px 2px black;
+}
+
+.damage.player {
+  color: #ff4d4d;
+}
+
+.damage.enemy {
+  color: #00ff88;
+}
+
+@keyframes floatDamage {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-40px) scale(1.4);
+  }
+}
+
+/* PARTÍCULAS DE IMPACTO */
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: orange;
+  pointer-events: none;
+  border-radius: 50%;
+  animation: explode 0.6s ease-out forwards;
+}
+
+.particle.red {
+  background: #ff3b3b;
+}
+
+.particle.green {
+  background: #00ff88;
+}
+
+@keyframes explode {
+  0% {
+    opacity: 1;
+    transform: translate(0,0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x), var(--y)) scale(0.5);
+  }
+}
+
+/* POSICIONAMENTO DAS BARRAS */
+.hp-container {
+  position: absolute;
+  top: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.hp-container.left {
+  left: 20px;
+  align-items: flex-start;
+}
+
+.hp-container.right {
+  right: 20px;
+  align-items: flex-end;
+}
+
+/* ANIMAÇÃO MAIS FLUIDA */
+#playerBar, #enemyBar {
+  transition: width 0.4s ease-out;
+}
+
+/* TREMOR DA BARRA */
+.hp-shake {
+  animation: hpShake 0.3s;
+}
+
+@keyframes hpShake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+
+/* TELA FINAL */
+#endScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.end-content {
+  text-align: center;
+  animation: zoomIn 0.5s ease;
+}
+
+#endTitle {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+#endScore {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 600px) {
+
+  .character {
+    font-size: 28px;
+  }
+
+  .hero {
+    left: 20px;
+    bottom: 40px;
+  }
+
+  .enemyChar {
+    right: 20px;
+    bottom: 40px;
+  }
+
+  .bar {
+    width: 140px;
+    height: 14px;
+  }
+
+  .hp-container p {
+    font-size: 12px;
+  }
+
+  .question-box {
+    font-size: 14px;
+  }
+
+  .option-btn {
+    width: 48%;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .pixel-btn {
+    width: 200px;
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  #diagram {
+    width: 90%;
+    height: 150px;
+  }
+
+  #options {
+    gap: 8px;
+  }
+
+}
+
+.character img {
+  width: 120px;   /* controla tamanho */
+  height: auto;
+  image-rendering: pixelated; /* mantém estilo pixel */
+}
+
+/* Ajuste fino de posição */
+.hero {
+  left: 5%;
+  bottom: 20px;
+}
+
+.enemyChar {
+  right: 5%;
+  bottom: 20px;
+}
+
+@keyframes idle {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
+
+.hero img,
+.enemyChar img {
+  animation: idle 1.2s infinite ease-in-out;
+}
