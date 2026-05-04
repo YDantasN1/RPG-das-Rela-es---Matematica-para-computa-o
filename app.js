@@ -202,29 +202,44 @@ function drawDiagram(pairs, codomain) {
     let container = document.getElementById("diagram");
     container.innerHTML = "";
     let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    
+    // O viewBox define o "espaço de desenho" interno, independente do tamanho da tela
     svg.setAttribute("viewBox", "0 0 300 200");
+    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
 
-    let leftX = 70;
-    let rightX = 230;
+    let leftX = 50;  // Ajustado para dar mais folga
+    let rightX = 250; // Ajustado para dar mais folga
     let leftY = [50, 100, 150];
     let rightY = codomain.map((_, i) => (200 / (codomain.length + 1)) * (i + 1));
 
-    [1, 2, 3].forEach((num, i) => svg.appendChild(createText(leftX, leftY[i], num)));
-    codomain.forEach((num, i) => svg.appendChild(createText(rightX, rightY[i], num)));
+    // Desenhar números do Domínio (A)
+    [1, 2, 3].forEach((num, i) => {
+        svg.appendChild(createText(leftX, leftY[i], num));
+    });
 
+    // Desenhar números do Contradomínio (B)
+    codomain.forEach((num, i) => {
+        svg.appendChild(createText(rightX, rightY[i], num));
+    });
+
+    // Desenhar as flechas (linhas)
     pairs.forEach(([x, y]) => {
         let yIdx = codomain.indexOf(y);
         if (yIdx !== -1) {
             let line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            // Adicionamos um pequeno offset (±15) para a linha não cobrir o número
             line.setAttribute("x1", leftX + 15);
             line.setAttribute("y1", leftY[x-1]);
             line.setAttribute("x2", rightX - 15);
             line.setAttribute("y2", rightY[yIdx]);
             line.setAttribute("stroke", "white");
             line.setAttribute("stroke-width", "2");
+            // Adiciona uma pontinha de flecha (opcional, mas ajuda visualmente)
+            line.setAttribute("marker-end", "url(#arrowhead)"); 
             svg.appendChild(line);
         }
     });
+    
     container.appendChild(svg);
 }
 
