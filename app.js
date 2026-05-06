@@ -78,14 +78,46 @@ function generateQuestion() {
         generateOptionsText(currentAnswer, ["É função", "Não é função"]);
     } 
     
-    // MODO NORMAL
+    // MODO NORMAL - Agora com propriedades de Relações
     else if (difficulty === "normal") {
-        domain.forEach(x => pairs.push([x, Math.floor(Math.random() * 4) + 1]));
+        codomain = [1, 2, 3]; // Fixado para ser de A para A
+        
+        // Gera uma quantidade aleatória de pares (entre 2 e 5) para criar relações variadas
+        let numPairs = Math.floor(Math.random() * 4) + 2;
+        for(let i=0; i < numPairs; i++) {
+            let a = domain[Math.floor(Math.random() * domain.length)];
+            let b = codomain[Math.floor(Math.random() * codomain.length)];
+            // Evita duplicatas exatas no array de pares
+            if(!pairs.some(p => p[0] === a && p[1] === b)) pairs.push([a, b]);
+        }
+
         drawDiagram(pairs, codomain);
-        currentAnswer = `{${domain.join(",")}}`;
-        questionText.innerText = "Qual é o domínio (A) da relação?";
-        generateOptionsText(currentAnswer, [currentAnswer, "{1,2}", "{2,3}", "{1,3}"]);
-    } 
+
+        // Sorteia qual propriedade perguntar
+        let subType = Math.floor(Math.random() * 5); 
+
+        if (subType === 0) {
+            currentAnswer = `{${domain.join(",")}}`;
+            questionText.innerText = "Qual é o domínio (A) da relação?";
+            generateOptionsText(currentAnswer, [currentAnswer, "{1,2}", "{2,3}", "{1,3}"]);
+        } else if (subType === 1) {
+            currentAnswer = isReflexive(pairs, domain) ? "Sim" : "Não";
+            questionText.innerText = "A relação é Reflexiva?";
+            generateOptionsText(currentAnswer, ["Sim", "Não"]);
+        } else if (subType === 2) {
+            currentAnswer = isSymmetric(pairs) ? "Sim" : "Não";
+            questionText.innerText = "A relação é Simétrica?";
+            generateOptionsText(currentAnswer, ["Sim", "Não"]);
+        } else if (subType === 3) {
+            currentAnswer = isAntisymmetric(pairs) ? "Sim" : "Não";
+            questionText.innerText = "A relação é Antissimétrica?";
+            generateOptionsText(currentAnswer, ["Sim", "Não"]);
+        } else {
+            currentAnswer = isTransitive(pairs) ? "Sim" : "Não";
+            questionText.innerText = "A relação é Transitiva?";
+            generateOptionsText(currentAnswer, ["Sim", "Não"]);
+        }
+    }
 
     // MODO DIFÍCIL
     else {
@@ -325,3 +357,34 @@ function playClick() {
 document.querySelectorAll("#menu .pixel-btn").forEach(btn => {
     btn.onclick = () => { playClick(); startGame(btn.dataset.level); };
 });
+
+/* --- NOVAS PROPRIEDADES PARA O MODO NORMAL --- */
+function isReflexive(pairs, domain) {
+    return domain.every(x => pairs.some(p => p[0] === x && p[1] === x));
+}
+
+function isSymmetric(pairs) {
+    if (pairs.length === 0) return true;
+    return pairs.every(p => pairs.some(sidekick => sidekick[0] === p[1] && sidekick[1] === p[0]));
+}
+
+function isAntisymmetric(pairs) {
+    for (let p of pairs) {
+        for (let s of pairs) {
+            if (p[0] === s[1] && p[1] === s[0] && p[0] !== p[1]) return false;
+        }
+    }
+    return true;
+}
+
+function isTransitive(pairs) {
+    for (let p1 of pairs) {
+        for (let p2 of pairs) {
+            if (p1[1] === p2[0]) {
+                let exists = pairs.some(p3 => p3[0] === p1[0] && p3[1] === p2[1]);
+                if (!exists) return false;
+            }
+        }
+    }
+    return true;
+}
