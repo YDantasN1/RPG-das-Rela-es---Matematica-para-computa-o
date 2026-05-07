@@ -1,94 +1,241 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>RPG das Relações</title>
-  <link rel="stylesheet" href="style.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-</head>
-<body>
-
-<!-- INTRO -->
-<div id="intro">
-  <div class="intro-content">
-    <h1 class="intro-title">⚔️ RPG DAS RELAÇÕES</h1>
-    <p class="intro-sub">Calcule. Conecte. Conquiste.</p>
-    <p> INSTRUÇÃO: O JOGO É UM QUIZ, VOCÊ RECEBERA UM DIAGRAMA E TERA QUE ANALISALO E MARCAR A OPÇÃO CORRETA PARA VENCER </p>
-    <p class="press-start">CLIQUE NA TELA PARA CONTINUAR.</p>
-  </div>
-</div>
-
-<!-- MENU -->
-<div id="menu" class="hidden">
-  <div class="menu-overlay"></div>
-
-  <div class="menu-panel">
-    <div class="menu-buttons">
-     <button class="pixel-btn easy" data-level="facil">FÁCIL</button>
-     <button class="pixel-btn normal" data-level="normal">NORMAL</button>
-     <button class="pixel-btn hard" data-level="dificil">DIFÍCIL</button>
-    </div>
-  </div>
-</div>
-
-<audio id="clickSound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
-
-<!-- JOGO -->
-<div id="game" class="hidden">
-
-  <div class="arena">
-
-    <!-- HUD DENTRO -->
-   <div class="hud">
-
-  <div class="hp-container left">
-    <p>🧙 Herói</p>
-    <div class="bar" id="playerBarContainer">
-      <div id="playerBar"></div>
-    </div>
-  </div>
-
-  <div class="hp-container right">
-    <p>👾 Mestre das Relações</p>
-    <div class="bar" id="enemyBarContainer">
-      <div id="enemyBar"></div>
-    </div>
-  </div>
-
-</div>
-    <!-- PERSONAGENS -->
-    <div class="character hero"><img src="./image/Personagem_Heroi.PNG" alt=""></div>
-    <div class="character enemyChar"><img src="./image/Personagem_Vilão.PNG" alt=""></div>
-
-    <!-- PERGUNTA -->
-    <div class="question-box">
-      <p id="questionText"></p>
-      <div id="diagram"></div>
-      <div id="options"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>RPG das Relacoes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/animations.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              gold: "#d4af37",
+              "gold-light": "#f5d76e",
+              surface: "rgba(15,12,25,0.88)",
+              answer: "#0e7490",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="h-screen overflow-hidden bg-[#0d0b14] text-[#e8e3d5]">
+    <!-- INTRO SCREEN -->
+    <div
+      id="intro"
+      class="overlay-before fixed inset-0 z-50 flex items-center justify-center cursor-pointer bg-[url('./image/Mapa.png')] bg-cover bg-center"
+    >
+      <div class="anim-zoom-in relative z-10 text-center px-6">
+        <h1
+          class="font-display anim-blink-stop text-[clamp(2rem,6vw,3.5rem)] text-[#f5d76e] [text-shadow:0_0_28px_rgba(212,175,55,0.65)] mb-3"
+        >
+          RPG DAS RELACOES
+        </h1>
+        <p
+          class="text-[1.05rem] text-white/85 [text-shadow:0_0_12px_#000] mb-1"
+        >
+          Calcule. Conecte. Conquiste.
+        </p>
+        <p
+          class="text-sm text-white/60 max-w-[340px] mx-auto leading-relaxed [text-shadow:0_0_10px_#000] mb-8"
+        >
+          Analise o diagrama e escolha a resposta correta para vencer o duelo.
+        </p>
+        <p
+          class="font-display anim-blink text-sm tracking-widest text-[#f5d76e] [text-shadow:0_0_10px_#000]"
+        >
+          CLIQUE PARA CONTINUAR
+        </p>
+      </div>
     </div>
 
-  </div>
+    <!-- MENU SCREEN -->
+    <div
+      id="menu"
+      class="overlay-before hidden fixed inset-0 bg-[url('./image/Menu_oficial.png')] bg-cover bg-center flex items-end justify-center pb-16"
+    >
+      <div class="relative z-10 flex flex-col items-center gap-4">
+        <h2
+          class="font-display text-[2rem] text-[#f5d76e] [text-shadow:0_0_18px_rgba(212,175,55,0.7)] mb-2"
+        >
+          RELACOES
+        </h2>
+        <button
+          data-level="facil"
+          class="diff-btn w-[260px] py-[14px] font-display text-[1.1rem] tracking-[0.05em] text-white border-2 border-white/20 rounded-md bg-gradient-to-br from-green-600 to-green-900 [text-shadow:0_1px_4px_rgba(0,0,0,0.55)] hover:scale-105 hover:brightness-110 active:scale-95 transition-all duration-150"
+        >
+          FACIL
+        </button>
+        <button
+          data-level="normal"
+          class="diff-btn w-[260px] py-[14px] font-display text-[1.1rem] tracking-[0.05em] text-white border-2 border-white/20 rounded-md bg-gradient-to-br from-amber-600 to-amber-900 [text-shadow:0_1px_4px_rgba(0,0,0,0.55)] hover:scale-105 hover:brightness-110 active:scale-95 transition-all duration-150"
+        >
+          NORMAL
+        </button>
+        <button
+          data-level="dificil"
+          class="diff-btn anim-glow-hard w-[260px] py-[14px] font-display text-[1.1rem] tracking-[0.05em] text-white border-2 border-white/20 rounded-md bg-gradient-to-br from-red-600 to-red-900 [text-shadow:0_1px_4px_rgba(0,0,0,0.55)] hover:scale-105 hover:brightness-110 active:scale-95 transition-all duration-150"
+        >
+          DIFICIL
+        </button>
+      </div>
+    </div>
 
-  <p id="log"></p>
+    <!-- GAME VIEW -->
+    <div
+      id="game-view"
+      class="hidden fixed inset-0 flex flex-col p-2.5 gap-2 overflow-hidden"
+    >
+      <!-- HUD -->
+      <div
+        id="hud"
+        class="flex justify-between items-start gap-2 flex-shrink-0"
+      >
+        <div class="flex flex-col gap-1">
+          <span
+            class="font-display text-[0.78rem] text-[#f5d76e] [text-shadow:0_1px_4px_rgba(0,0,0,0.9)]"
+          >
+            Heroi
+          </span>
+          <div
+            class="w-[200px] h-3 bg-white/10 rounded-full overflow-hidden border border-white/10"
+          >
+            <div
+              id="playerBar"
+              class="hp-fill h-full rounded-full bg-gradient-to-r from-green-600 to-green-400"
+              style="width: 100%"
+            ></div>
+          </div>
+        </div>
 
-</div>
+        <div class="flex-1 text-center">
+          <span
+            id="score-display"
+            class="font-display text-sm text-[#d4af37] [text-shadow:0_0_8px_rgba(212,175,55,0.5)]"
+          >
+            0 pts
+          </span>
+        </div>
 
-</div>
+        <div class="flex flex-col items-end gap-1">
+          <span
+            class="font-display text-[0.78rem] text-[#f5d76e] [text-shadow:0_1px_4px_rgba(0,0,0,0.9)]"
+          >
+            Mestre das Relacoes
+          </span>
+          <div
+            class="w-[200px] h-3 bg-white/10 rounded-full overflow-hidden border border-white/10"
+          >
+            <div
+              id="enemyBar"
+              class="hp-fill h-full rounded-full bg-gradient-to-r from-red-900 to-red-500"
+              style="width: 100%"
+            ></div>
+          </div>
+        </div>
+      </div>
 
-<audio id="hitSound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
-<audio id="errorSound" src="https://www.soundjay.com/buttons/sounds/button-10.mp3"></audio>
-<audio id="winSound" src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3"></audio>
+      <!-- ARENA -->
+      <div
+        id="arena"
+        class="relative w-full max-w-[900px] h-[62dvh] mx-auto bg-[url('./image/Mapa.png')] bg-cover bg-center rounded-xl border-2 border-[rgba(212,175,55,0.32)] overflow-hidden"
+      >
+        <div id="heroChar" class="absolute bottom-4 left-[5%]">
+          <img
+            src="./image/Personagem_Heroi.PNG"
+            alt="Heroi"
+            class="pixel anim-idle w-[110px] h-auto [filter:drop-shadow(0_4px_8px_rgba(0,0,0,0.7))]"
+          />
+        </div>
 
-<!-- TELA FINAL -->
-<div id="endScreen" class="hidden">
-  <div class="end-content">
-    <h1 id="endTitle"></h1>
-    <p id="endScore"></p>
-    <button class="pixel-btn" onclick="restartGame()">JOGAR NOVAMENTE</button>
-  </div>
-</div>
+        <div id="enemyChar" class="absolute bottom-4 right-[5%]">
+          <img
+            src="./image/Personagem_Vilao.PNG"
+            alt="Mestre das Relacoes"
+            class="pixel anim-idle w-[110px] h-auto [filter:drop-shadow(0_4px_8px_rgba(0,0,0,0.7))]"
+          />
+        </div>
 
-<script src="app.js"></script>
-</body>
+        <!-- QUESTION BOX -->
+        <div
+          id="question-box"
+          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(480px,90%)]"
+        >
+          <div
+            class="rounded-xl border border-[rgba(212,175,55,0.32)] bg-[rgba(6,4,16,0.92)] backdrop-blur-md p-3 px-4 [box-shadow:0_8px_32px_rgba(0,0,0,0.6)]"
+          >
+            <p
+              id="question-text"
+              class="text-center text-sm font-bold text-[#f5d76e] [text-shadow:0_1px_4px_rgba(0,0,0,0.9)] mb-2"
+            ></p>
+            <div
+              id="diagram"
+              class="w-full max-w-[300px] aspect-[3/2] mx-auto bg-black/55 border border-[rgba(212,175,55,0.32)] rounded-lg overflow-hidden flex items-center justify-center"
+            ></div>
+            <div
+              id="options"
+              class="flex justify-center flex-wrap gap-2 mt-2.5"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMBAT LOG -->
+      <p
+        id="log"
+        class="text-center text-sm font-bold text-[#f5d76e] [text-shadow:0_1px_4px_rgba(0,0,0,0.9)] min-h-[1.3em] flex-shrink-0"
+      ></p>
+    </div>
+
+    <!-- END SCREEN -->
+    <div
+      id="end-screen"
+      class="hidden fixed inset-0 z-[60] bg-black/88 flex items-center justify-center"
+    >
+      <div
+        class="anim-zoom-in text-center rounded-xl border border-[rgba(212,175,55,0.32)] bg-[rgba(15,12,25,0.88)] backdrop-blur-md [box-shadow:0_8px_32px_rgba(0,0,0,0.6)] px-14 py-10"
+      >
+        <h1
+          id="end-title"
+          class="font-display text-[clamp(2rem,5vw,3rem)] text-[#d4af37] [text-shadow:0_0_28px_rgba(212,175,55,0.65)] mb-4"
+        ></h1>
+        <p id="end-score" class="text-[1.2rem] text-white/78 mb-8"></p>
+        <button
+          id="restart-btn"
+          class="w-[260px] py-[14px] font-display text-[1.1rem] tracking-[0.05em] text-white border-2 border-white/20 rounded-md bg-gradient-to-br from-amber-600 to-amber-900 [text-shadow:0_1px_4px_rgba(0,0,0,0.55)] hover:scale-105 hover:brightness-110 active:scale-95 transition-all duration-150"
+        >
+          JOGAR NOVAMENTE
+        </button>
+      </div>
+    </div>
+
+    <!-- AUDIO -->
+    <audio
+      id="snd-click"
+      src="https://www.soundjay.com/buttons/sounds/button-3.mp3"
+      preload="auto"
+    ></audio>
+    <audio
+      id="snd-hit"
+      src="https://www.soundjay.com/buttons/sounds/button-16.mp3"
+      preload="auto"
+    ></audio>
+    <audio
+      id="snd-error"
+      src="https://www.soundjay.com/buttons/sounds/button-10.mp3"
+      preload="auto"
+    ></audio>
+    <audio
+      id="snd-win"
+      src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3"
+      preload="auto"
+    ></audio>
+
+    <script type="module" src="src/controllers/GameController.js"></script>
+  </body>
 </html>
