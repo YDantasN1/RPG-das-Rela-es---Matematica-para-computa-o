@@ -1,0 +1,191 @@
+@import url("https://fonts.googleapis.com/css2?family=MedievalSharp&family=Nunito:wght@400;600;700;800&display=swap");
+
+:root {
+  --font-display: "MedievalSharp", "Georgia", serif;
+  --font-body: "Nunito", "Segoe UI", sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+}
+.font-display,
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+}
+
+/* HP bar width transition */
+.hp-fill {
+  transition: width 0.4s ease-out;
+}
+
+/* Pixel-art sprites */
+.pixel {
+  image-rendering: pixelated;
+}
+
+/* SVG fills container */
+#diagram svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Pseudo-element dark overlay for intro and menu */
+.overlay-before {
+  position: relative;
+}
+.overlay-before::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Character idle float */
+@keyframes idle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+.anim-idle {
+  animation: idle 1.4s ease-in-out infinite;
+}
+
+/* Hero attack right lunge */
+@keyframes atk-hero {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(44px) scale(1.12);
+  }
+}
+.anim-atk-hero {
+  animation: atk-hero 0.4s ease !important;
+}
+
+/* Enemy attack left lunge */
+@keyframes atk-enemy {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-44px) scale(1.12);
+  }
+}
+.anim-atk-enemy {
+  animation: atk-enemy 0.4s ease !important;
+}
+
+/* Damage number float and fade */
+@keyframes float-up {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-52px) scale(1.6);
+  }
+}
+.anim-float-up {
+  animation: float-up 1s ease-out forwards;
+}
+
+/* Arena shake on answer */
+@keyframes arena-shake {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-5px, 3px);
+  }
+  40% {
+    transform: translate(5px, -3px);
+  }
+  60% {
+    transform: translate(-3px, -4px);
+  }
+  80% {
+    transform: translate(4px, 3px);
+  }
+}
+.anim-shake {
+  animation: arena-shake 0.4s;
+}
+
+/* Entrance zoom */
+@keyframes zoom-in {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.anim-zoom-in {
+  animation: zoom-in 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Intro dismiss */
+@keyframes intro-out {
+  to {
+    opacity: 0;
+    transform: scale(1.12);
+  }
+}
+.anim-intro-out {
+  animation: intro-out 0.8s forwards;
+}
+
+/* Screen transition fade */
+@keyframes fade-out {
+  to {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+}
+.anim-fade-out {
+  animation: fade-out 0.5s forwards;
+}
+
+/* Blinking CTA text */
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+.anim-blink {
+  animation: blink 1.1s ease-in-out infinite;
+}
+
+/* Hard difficulty red glow pulse */
+@keyframes glow-hard {
+  from {
+    box-shadow:
+      0 0 10px #dc2626,
+      0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+  to {
+    box-shadow:
+      0 0 26px #f97316,
+      0 0 48px #dc2626,
+      0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+}
+.anim-glow-hard {
+  animation: glow-hard 1.2s ease-in-out infinite alternate;
+}
