@@ -3,6 +3,7 @@ const sounds = {
   hit: document.getElementById("snd-hit"),
   error: document.getElementById("snd-error"),
   win: document.getElementById("snd-win"),
+  lose: document.getElementById("snd-lose"),
 };
 
 function playSound(name) {

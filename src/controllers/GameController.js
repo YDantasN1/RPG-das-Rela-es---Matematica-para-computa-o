@@ -70,6 +70,7 @@ function endGame() {
   setEndScreen(enemyHP <= 0, score);
   show("end-screen");
   if (enemyHP <= 0) playSound("win");
+  else playSound("lose");
 }
 
 function restartGame() {

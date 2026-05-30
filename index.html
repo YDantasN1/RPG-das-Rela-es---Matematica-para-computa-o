@@ -147,7 +147,7 @@
         <!-- Player side -->
         <div class="flex flex-col gap-1 min-w-0">
           <span
-            class="font-display text-xs text-gold-light tracking-wide [text-shadow:0_1px_4px_rgba(0,0,0,0.9)]"
+            class="font-display text-xl text-gold-light tracking-wide [text-shadow:0_1px_4px_rgba(0,0,0,0.9)]"
           >
             ⚔ Herói
           </span>
@@ -166,7 +166,7 @@
         <div class="flex flex-col items-center gap-0.5">
           <span
             id="score-display"
-            class="font-display text-base text-gold [text-shadow:0_0_12px_rgba(212,175,55,0.6)]"
+            class="font-display text-3xl text-gold [text-shadow:0_0_12px_rgba(212,175,55,0.6)]"
           >
             0 pts
           </span>
@@ -175,7 +175,7 @@
         <!-- Enemy side -->
         <div class="flex flex-col items-end gap-1 min-w-0">
           <span
-            class="font-display text-xs text-gold-light tracking-wide [text-shadow:0_1px_4px_rgba(0,0,0,0.9)]"
+            class="font-display text-xl text-gold-light tracking-wide [text-shadow:0_1px_4px_rgba(0,0,0,0.9)]"
           >
             Mestre das Relações 💀
           </span>
@@ -238,7 +238,7 @@
       <!-- COMBAT LOG -->
       <p
         id="log"
-        class="text-center text-sm font-bold text-gold-light tracking-wide [text-shadow:0_1px_6px_rgba(0,0,0,0.9)] min-h-[1.4em] flex-shrink-0"
+        class="text-center text-xl font-bold text-gold-light tracking-wide [text-shadow:0_1px_6px_rgba(0,0,0,0.9)] min-h-[1.4em] flex-shrink-0"
       ></p>
     </div>
 
@@ -279,23 +279,27 @@
     <!-- AUDIO -->
     <audio
       id="snd-click"
-      src="https://www.soundjay.com/buttons/sounds/button-3.mp3"
+      src="./Songs/click.mp3"
       preload="auto"
     ></audio>
     <audio
       id="snd-hit"
-      src="https://www.soundjay.com/buttons/sounds/button-16.mp3"
+      src="./Songs/hit.mp3"
       preload="auto"
     ></audio>
     <audio
       id="snd-error"
-      src="https://www.soundjay.com/buttons/sounds/button-10.mp3"
+      src="./Songs/wrong.mp3"
       preload="auto"
     ></audio>
     <audio
       id="snd-win"
-      src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3"
+      src="./Songs/correct.mp3"
       preload="auto"
+    ></audio>
+    <audio 
+      id="snd-lose"
+      src="./Songs/lose.mp3"
     ></audio>
 
     <script type="module" src="src/controllers/GameController.js"></script>
