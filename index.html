@@ -35,9 +35,6 @@
   <body
     class="h-screen w-screen overflow-hidden bg-[#0a0812] text-[#ede8d8] font-body select-none"
   >
-    <!-- ═══════════════════════════════════════════
-       INTRO SCREEN
-  ════════════════════════════════════════════ -->
     <div
       id="intro"
       class="overlay-before fixed inset-0 z-50 cursor-pointer bg-[url('./image/Mapa.png')] bg-cover bg-center flex items-center justify-center"
@@ -100,7 +97,6 @@
           Escolha a dificuldade
         </p>
 
-        <!-- EASY -->
         <button
           data-level="facil"
           class="group relative w-72 py-4 font-display text-xl tracking-widest text-white rounded-lg overflow-hidden shadow-btn bg-gradient-to-br from-emerald-500 to-emerald-800 border border-emerald-400/30 hover:scale-[1.04] hover:brightness-110 active:scale-[0.97] transition-all duration-150 [text-shadow:0_1px_6px_rgba(0,0,0,0.7)]"
@@ -110,7 +106,6 @@
           </span>
         </button>
 
-        <!-- NORMAL -->
         <button
           data-level="normal"
           class="group relative w-72 py-4 font-display text-xl tracking-widest text-white rounded-lg overflow-hidden shadow-btn bg-gradient-to-br from-amber-500 to-amber-800 border border-amber-400/30 hover:scale-[1.04] hover:brightness-110 active:scale-[0.97] transition-all duration-150 [text-shadow:0_1px_6px_rgba(0,0,0,0.7)]"
@@ -120,7 +115,6 @@
           </span>
         </button>
 
-        <!-- HARD -->
         <button
           data-level="dificil"
           class="anim-glow-hard group relative w-72 py-4 font-display text-xl tracking-widest text-white rounded-lg overflow-hidden shadow-btn bg-gradient-to-br from-red-500 to-red-900 border border-red-400/30 hover:scale-[1.04] hover:brightness-110 active:scale-[0.97] transition-all duration-150 [text-shadow:0_1px_6px_rgba(0,0,0,0.7)]"
@@ -132,9 +126,6 @@
       </div>
     </div>
 
-    <!-- ═══════════════════════════════════════════
-       GAME VIEW
-  ════════════════════════════════════════════ -->
     <div
       id="game-view"
       class="hidden fixed inset-0 flex flex-col p-3 gap-2 overflow-hidden"
@@ -162,7 +153,6 @@
           </div>
         </div>
 
-        <!-- Score center -->
         <div class="flex flex-col items-center gap-0.5">
           <span
             id="score-display"
@@ -172,7 +162,6 @@
           </span>
         </div>
 
-        <!-- Enemy side -->
         <div class="flex flex-col items-end gap-1 min-w-0">
           <span
             class="font-display text-xs text-gold-light tracking-wide [text-shadow:0_1px_4px_rgba(0,0,0,0.9)]"
@@ -235,7 +224,6 @@
         </div>
       </div>
 
-      <!-- COMBAT LOG -->
       <p
         id="log"
         class="text-center text-sm font-bold text-gold-light tracking-wide [text-shadow:0_1px_6px_rgba(0,0,0,0.9)] min-h-[1.4em] flex-shrink-0"
@@ -276,7 +264,6 @@
       </div>
     </div>
 
-    <!-- AUDIO -->
     <audio
       id="snd-click"
       src="https://www.soundjay.com/buttons/sounds/button-3.mp3"

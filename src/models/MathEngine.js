@@ -1,31 +1,40 @@
+//injetora
+
 function isInjective(pairs) {
   const images = pairs.map((p) => p[1]);
   return new Set(images).size === images.length;
 }
 
+//sobrejetora
 function isSurjective(pairs, codomain) {
   const image = [...new Set(pairs.map((p) => p[1]))];
   return codomain.length === image.length;
 }
 
+//bijetora
+
 function isBijective(pairs, codomain) {
   return isInjective(pairs) && isSurjective(pairs, codomain);
 }
 
+//imagem
 function hasElementWithoutImage(pairs, domain) {
   const used = pairs.map((p) => p[0]);
   return domain.some((x) => !used.includes(x));
 }
 
+//reflexivo
 function isReflexive(pairs, domain) {
   return domain.every((x) => pairs.some((p) => p[0] === x && p[1] === x));
 }
 
+//simetrico
 function isSymmetric(pairs) {
   if (pairs.length === 0) return true;
   return pairs.every((p) => pairs.some((s) => s[0] === p[1] && s[1] === p[0]));
 }
 
+//antisemetrico
 function isAntisymmetric(pairs) {
   for (const p of pairs)
     for (const s of pairs)
@@ -33,6 +42,7 @@ function isAntisymmetric(pairs) {
   return true;
 }
 
+//transitivo
 function isTransitive(pairs) {
   for (const p1 of pairs)
     for (const p2 of pairs)
