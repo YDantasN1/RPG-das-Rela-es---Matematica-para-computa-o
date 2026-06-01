@@ -4,7 +4,7 @@ import {
   generateQuestion,
   getCurrentAnswer,
 } from "../services/CombatService.js";
-import { updateScore, updateBars, setLog } from "../views/HudView.js";
+import { updateScore, updateBars, setLog, TotalScore } from "../views/HudView.js";
 import {
   shakeArena,
   animateCharacter,
@@ -29,6 +29,12 @@ function onAnswer(selected) {
     spawnDamageFloat("enemyChar", damage, "enemy");
     animateCharacter("hero");
     playSound("hit");
+
+    const totalAtual = parseInt(sessionStorage.getItem("total_accumulated_score")) || 0;
+    sessionStorage.setItem("total_accumulated_score", totalAtual + 1);
+
+    TotalScore();
+
   } else {
     setState({ playerHP: playerHP - damage });
     setLog(`ERROU! -${damage} HP`);
@@ -106,18 +112,40 @@ function dismissIntro() {
 }
 
 function bindEvents() {
+  window.removeEventListener("click", dismissIntro);
   window.addEventListener("click", dismissIntro, { once: true });
 
   document.querySelectorAll("button[data-level]").forEach((btn) => {
-    btn.addEventListener("click", () => {
+    const newBtn = btn.cloneNode(true);
+    btn.parentNode.replaceChild(newBtn, btn);
+
+    newBtn.addEventListener("click", () => {
       playSound("click");
-      startGame(btn.dataset.level);
+      startGame(newBtn.dataset.level);
     });
   });
 
-  document.getElementById("restart-btn").addEventListener("click", restartGame);
-  document.getElementById("back-menu").addEventListener("click", backMenu);
-  document.getElementById("skip-quest").addEventListener("click", skipQuestion);
+  const restartBtn = document.getElementById("restart-btn");
+  if (restartBtn) {
+    const newRestart = restartBtn.cloneNode(true);
+    restartBtn.parentNode.replaceChild(newRestart, restartBtn);
+    newRestart.addEventListener("click", restartGame);
+  }
+
+  const backMenuBtn = document.getElementById("back-menu");
+  if (backMenuBtn) {
+    const newBack = backMenuBtn.cloneNode(true);
+    backMenuBtn.parentNode.replaceChild(newBack, backMenuBtn);
+    newBack.addEventListener("click", backMenu);
+  }
+
+  const skipBtn = document.getElementById("skip-quest");
+  if (skipBtn) {
+    const newSkip = skipBtn.cloneNode(true);
+    skipBtn.parentNode.replaceChild(newSkip, skipBtn);
+    newSkip.addEventListener("click", skipQuestion);
+  }
+  TotalScore();
 }
 
-bindEvents();
+bindEvents()

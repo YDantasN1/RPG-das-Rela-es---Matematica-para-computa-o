@@ -1,6 +1,11 @@
 function updateScore(points) {
   document.getElementById("score-display").textContent = `${points} pts`;
-  document.getElementById("total-score").textContent = `Seus pontos: ${points}`;
+}
+
+function TotalScore() {
+  const totalSalvo = parseInt(sessionStorage.getItem("total_accumulated_score")) || 0;
+  
+  document.getElementById("total-score").textContent = `Seus pontos: ${totalSalvo}`;
 }
 
 function updateBars(playerHP, enemyHP) {
@@ -13,4 +18,4 @@ function setLog(message) {
   document.getElementById("log").textContent = message;
 }
 
-export { updateScore, updateBars, setLog };
+export { updateScore, updateBars, setLog, TotalScore };
