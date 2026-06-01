@@ -1,5 +1,6 @@
 function updateScore(points) {
   document.getElementById("score-display").textContent = `${points} pts`;
+  document.getElementById("total-score").textContent = `Seus pontos: ${points}`;
 }
 
 function updateBars(playerHP, enemyHP) {

@@ -1,307 +1,243 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <title>RPG das Relacoes</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="assets/animations.css" />
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              display: ["MedievalSharp", "Georgia", "serif"],
-              body: ["Nunito", "Segoe UI", "sans-serif"],
-            },
-            colors: {
-              gold: "#d4af37",
-              "gold-light": "#f5d76e",
-            },
-            boxShadow: {
-              panel:
-                "0 8px 48px rgba(0,0,0,0.75), 0 0 0 1px rgba(212,175,55,0.22)",
-              btn: "0 4px 20px rgba(0,0,0,0.5)",
-            },
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>RPG das Relacoes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/animations.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ["Playfair Display", "serif"],
+            body: ["Nunito", "Segoe UI", "sans-serif"],
+          },
+          colors: {
+            gold: "#d4af37",
+            "gold-light": "#f5d76e",
+          },
+          boxShadow: {
+            panel:
+              "0 8px 48px rgba(0,0,0,0.75), 0 0 0 1px rgba(212,175,55,0.22)",
+            btn: "0 4px 20px rgba(0,0,0,0.5)",
           },
         },
-      };
-    </script>
-  </head>
+      },
+    };
+  </script>
+</head>
 
-  <body
-    class="h-screen w-screen overflow-hidden bg-[#0a0812] text-[#ede8d8] font-body select-none"
-  >
-    <!-- ═══════════════════════════════════════════
+<body class="h-screen w-screen overflow-hidden bg-[#0a0812] text-[#ede8d8] font-body select-none">
+  <!-- ═══════════════════════════════════════════
        INTRO SCREEN
   ════════════════════════════════════════════ -->
-    <div
-      id="intro"
-      class="overlay-before fixed inset-0 z-50 cursor-pointer bg-[url('./image/Mapa.png')] bg-cover bg-center flex items-center justify-center"
-    >
-      <div
-        class="anim-zoom-in relative z-10 flex flex-col items-center text-center px-8 max-w-2xl"
-      >
-        <h1
-          class="font-display anim-blink-stop text-[clamp(2.8rem,7vw,5rem)] leading-tight text-gold-light [text-shadow:0_0_40px_rgba(212,175,55,0.8),0_2px_0_rgba(0,0,0,0.9)] mb-4 tracking-wide"
-        >
-          RPG DAS<br />RELAÇÕES
-        </h1>
+  <div id="intro"
+    class="overlay-before fixed inset-0 z-50 cursor-pointer bg-[url('./image/map.png')] bg-cover bg-center flex items-center justify-center">
+    <div class="anim-zoom-in relative z-10 flex flex-col items-center text-center px-8 max-w-2xl">
+      <h1
+        class="font-display anim-blink-stop text-[clamp(2.8rem,7vw,5rem)] leading-tight text-gold-light [text-shadow:0_0_40px_rgba(212,175,55,0.8),0_2px_0_rgba(0,0,0,0.9)] mb-4 tracking-wide">
+        RPG DAS<br />RELAÇÕES
+      </h1>
 
-        <p
-          class="text-lg text-white/80 [text-shadow:0_1px_8px_rgba(0,0,0,0.9)] mb-2 tracking-wider uppercase font-semibold"
-        >
-          Calcule · Conecte · Conquiste
-        </p>
+      <p
+        class="text-lg text-white/80 [text-shadow:0_1px_8px_rgba(0,0,0,0.9)] mb-2 tracking-wider uppercase font-semibold">
+        Calcule · Conecte · Conquiste
+      </p>
 
-        <p
-          class="text-sm text-white/55 [text-shadow:0_1px_6px_rgba(0,0,0,1)] mb-12 max-w-sm leading-relaxed"
-        >
-          Analise o diagrama e escolha a resposta correta para vencer o duelo.
-        </p>
+      <p class="text-sm text-white/55 [text-shadow:0_1px_6px_rgba(0,0,0,1)] mb-12 max-w-sm leading-relaxed">
+        Analise o diagrama e escolha a resposta correta para vencer o duelo.
+      </p>
 
-        <div
-          class="w-px h-8 bg-gradient-to-b from-gold-light/60 to-transparent mb-8"
-        ></div>
+      <div class="w-px h-8 bg-gradient-to-b from-gold-light/60 to-transparent mb-8"></div>
 
-        <p
-          class="anim-blink font-display text-sm tracking-[0.2em] text-gold-light [text-shadow:0_0_14px_rgba(212,175,55,0.7)] uppercase"
-        >
-          ▶ Clique para continuar
-        </p>
-      </div>
+      <p
+        class="anim-blink font-display text-sm tracking-[0.2em] text-gold-light [text-shadow:0_0_14px_rgba(212,175,55,0.7)] uppercase">
+        ▶ Clique para continuar
+      </p>
+    </div>
+  </div>
+
+  <div id="menu"
+    class="overlay-before hidden fixed inset-0 bg-[url('./image/Menu.png')] bg-cover bg-center flex flex-col items-center justify-center gap-6 md:gap-10 py-8 md:pb-16 overflow-y-auto">
+    <div class="relative z-10 flex flex-col items-center gap-2 px-8 text-center">
+      <p class="font-display text-gold-light/70 text-sm tracking-[0.25em] uppercase">
+        Matemática Discreta
+      </p>
+      <h2
+        class="font-display text-[clamp(2rem,5vw,3.2rem)] text-gold-light [text-shadow:0_0_30px_rgba(212,175,55,0.65),0_2px_0_rgba(0,0,0,0.9)] leading-tight tracking-wide">
+        RELAÇÕES
+      </h2>
     </div>
 
     <div
-      id="menu"
-      class="overlay-before hidden fixed inset-0 bg-[url('./image/Menu_oficial.png')] bg-cover bg-center flex items-center justify-center"
-    >
-      <div class="relative z-10 flex flex-col items-center gap-5 px-8">
-        <p
-          class="font-display text-gold-light/70 text-sm tracking-[0.25em] uppercase mb-1"
-        >
-          Matemática Discreta
-        </p>
-
-        <h2
-          class="font-display text-[clamp(2rem,5vw,3.2rem)] text-gold-light text-center [text-shadow:0_0_30px_rgba(212,175,55,0.65),0_2px_0_rgba(0,0,0,0.9)] leading-tight tracking-wide mb-2"
-        >
-          RELAÇÕES
-        </h2>
-
-        <div
-          class="w-16 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent mb-4"
-        ></div>
-
-        <p class="text-white/50 text-xs tracking-widest uppercase mb-2">
+      class="relative z-20 flex flex-col md:flex-row items-center md:items-start justify-between gap-8 md:gap-32 max-w-6xl w-full px-8">
+      <div class="flex flex-col items-center justify-center gap-4">
+        <p class="text-white/50 text-lg tracking-widest uppercase">
           Escolha a dificuldade
         </p>
-
-        <!-- EASY -->
-        <button
-          data-level="facil"
-          class="group relative w-72 py-4 font-display text-xl tracking-widest text-white rounded-lg overflow-hidden shadow-btn bg-gradient-to-br from-emerald-500 to-emerald-800 border border-emerald-400/30 hover:scale-[1.04] hover:brightness-110 active:scale-[0.97] transition-all duration-150 [text-shadow:0_1px_6px_rgba(0,0,0,0.7)]"
-        >
+        <button data-level="facil"
+          class="group relative w-72 py-4 font-display text-xl tracking-widest text-white rounded-lg overflow-hidden shadow-btn bg-gradient-to-br from-emerald-500 to-emerald-800 border border-emerald-400/30 hover:scale-[1.04] hover:brightness-110 active:scale-[0.97] transition-all duration-150 [text-shadow:0_1px_6px_rgba(0,0,0,0.7)]">
           <span class="relative z-10 flex items-center justify-center gap-3">
             <span class="text-base opacity-70">⚔️</span> FÁCIL
           </span>
         </button>
-
-        <!-- NORMAL -->
-        <button
-          data-level="normal"
-          class="group relative w-72 py-4 font-display text-xl tracking-widest text-white rounded-lg overflow-hidden shadow-btn bg-gradient-to-br from-amber-500 to-amber-800 border border-amber-400/30 hover:scale-[1.04] hover:brightness-110 active:scale-[0.97] transition-all duration-150 [text-shadow:0_1px_6px_rgba(0,0,0,0.7)]"
-        >
+        <button data-level="normal"
+          class="group relative w-72 py-4 font-display text-xl tracking-widest text-white rounded-lg overflow-hidden shadow-btn bg-gradient-to-br from-amber-500 to-amber-800 border border-amber-400/30 hover:scale-[1.04] hover:brightness-110 active:scale-[0.97] transition-all duration-150 [text-shadow:0_1px_6px_rgba(0,0,0,0.7)]">
           <span class="relative z-10 flex items-center justify-center gap-3">
             <span class="text-base opacity-70">🔥</span> NORMAL
           </span>
         </button>
-
-        <!-- HARD -->
-        <button
-          data-level="dificil"
-          class="anim-glow-hard group relative w-72 py-4 font-display text-xl tracking-widest text-white rounded-lg overflow-hidden shadow-btn bg-gradient-to-br from-red-500 to-red-900 border border-red-400/30 hover:scale-[1.04] hover:brightness-110 active:scale-[0.97] transition-all duration-150 [text-shadow:0_1px_6px_rgba(0,0,0,0.7)]"
-        >
+        <button data-level="dificil"
+          class="anim-glow-hard group relative w-72 py-4 font-display text-xl tracking-widest text-white rounded-lg overflow-hidden shadow-btn bg-gradient-to-br from-red-500 to-red-900 border border-red-400/30 hover:scale-[1.04] hover:brightness-110 active:scale-[0.97] transition-all duration-150 [text-shadow:0_1px_6px_rgba(0,0,0,0.7)]">
           <span class="relative z-10 flex items-center justify-center gap-3">
             <span class="text-base opacity-70">💀</span> DIFÍCIL
           </span>
         </button>
       </div>
-    </div>
 
-    <!-- ═══════════════════════════════════════════
-       GAME VIEW
-  ════════════════════════════════════════════ -->
-    <div
-      id="game-view"
-      class="hidden fixed inset-0 flex flex-col p-3 gap-2 overflow-hidden"
-    >
-      <!-- HUD -->
-      <div
-        id="hud"
-        class="flex items-center justify-between gap-3 flex-shrink-0 px-1"
-      >
-        <!-- Player side -->
-        <div class="flex flex-col gap-1 min-w-0">
-          <span
-            class="font-display text-xl text-gold-light tracking-wide [text-shadow:0_1px_4px_rgba(0,0,0,0.9)]"
-          >
-            ⚔️ Herói
-          </span>
-          <div
-            class="w-44 sm:w-56 h-3 bg-black/40 rounded-full overflow-hidden border border-white/10 shadow-inner"
-          >
-            <div
-              id="playerBar"
-              class="hp-fill h-full rounded-full bg-gradient-to-r from-emerald-700 to-emerald-400"
-              style="width: 100%"
-            ></div>
-          </div>
-        </div>
+      <div class="flex flex-col justify-center items-center gap-4 min-w-0 md:min-w-[288px]">
+        <p class="text-white/50 text-lg tracking-widest uppercase">Rank</p>
 
-        <!-- Score center -->
-        <div class="flex flex-col items-center gap-0.5">
-          <span
-            id="score-display"
-            class="font-display text-3xl text-gold [text-shadow:0_0_12px_rgba(212,175,55,0.6)]"
-          >
-            0 pts
-          </span>
-        </div>
-
-        <!-- Enemy side -->
-        <div class="flex flex-col items-end gap-1 min-w-0">
-          <span
-            class="font-display text-xl text-gold-light tracking-wide [text-shadow:0_1px_4px_rgba(0,0,0,0.9)]"
-          >
-            💀 Mestre das Relações
-          </span>
-          <div
-            class="w-44 sm:w-56 h-3 bg-black/40 rounded-full overflow-hidden border border-white/10 shadow-inner"
-          >
-            <div
-              id="enemyBar"
-              class="hp-fill h-full rounded-full bg-gradient-to-r from-red-900 to-red-500"
-              style="width: 100%"
-            ></div>
-          </div>
-        </div>
+        <span id="total-score"
+          class="font-display text-xl md:text-2xl tracking-wide [text-shadow:0_1px_4px_rgba(0,0,0,0.6)] text-center whitespace-nowrap">
+          Seus pontos: 0
+        </span>
+        <span
+          class="font-display text-xl md:text-2xl tracking-wide [text-shadow:0_1px_4px_rgba(0,0,0,0.6)] text-center whitespace-nowrap">
+          Joao Oliveira: 150 pts
+        </span>
+        <span
+          class="font-display text-xl md:text-2xl tracking-wide [text-shadow:0_1px_4px_rgba(0,0,0,0.6)] text-center whitespace-nowrap">
+          Yuri dantas: 100 pts
+        </span>
+        <span
+          class="font-display text-xl md:text-2xl tracking-wide [text-shadow:0_1px_4px_rgba(0,0,0,0.6)] text-center whitespace-nowrap">
+          Ruy lima: 80 pts
+        </span>
       </div>
-      <div
-        id="arena"
-        class="relative flex-1 w-full max-w-4xl mx-auto bg-[url('./image/Mapa.png')] bg-cover bg-center rounded-2xl border-2 border-gold/25 overflow-hidden shadow-[0_0_60px_rgba(0,0,0,0.8)]"
-      >
-        <div id="heroChar" class="absolute bottom-4 left-[5%]">
-          <img
-            src="./image/Personagem_Heroi.PNG"
-            alt="Herói"
-            class="pixel anim-idle w-24 sm:w-[110px] h-auto [filter:drop-shadow(0_4px_12px_rgba(0,0,0,0.8))]"
-          />
-        </div>
+    </div>
+  </div>
 
-        <div id="enemyChar" class="absolute bottom-4 right-[5%]">
-          <img
-            src="./image/Personagem_Vilão.PNG"
-            alt="Mestre"
-            class="pixel anim-idle w-24 sm:w-[110px] h-auto [filter:drop-shadow(0_4px_12px_rgba(0,0,0,0.8))]"
-          />
-        </div>
+  <!-- GAME VIEW -->
+  <div id="game-view" class="hidden justify-between fixed inset-0 flex flex-col p-3 gap-3 overflow-y-auto md:overflow-hidden">
 
-        <div
-          id="question-box"
-          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(500px,90%)]"
-        >
-          <div
-            class="rounded-2xl border border-gold/25 shadow-panel bg-[rgba(5,3,14,0.93)] backdrop-blur-md px-5 py-4"
-          >
-            <p
-              id="question-text"
-              class="text-center font-semibold text-sm sm:text-base text-gold-light [text-shadow:0_1px_6px_rgba(0,0,0,1)] mb-3 leading-snug"
-            ></p>
+    <div id="hud" class="flex flex-col md:flex-row items-center justify-between gap-3 flex-shrink-0 px-1">
 
-            <div
-              id="diagram"
-              class="w-full max-w-[280px] sm:max-w-[300px] aspect-[3/2] mx-auto bg-black/60 border border-gold/20 rounded-xl overflow-hidden flex items-center justify-center"
-            ></div>
-
-            <div
-              id="options"
-              class="flex justify-center flex-wrap gap-2 mt-3"
-            ></div>
-          </div>
+      <div class="flex flex-col items-center md:items-start gap-1 w-full md:w-80">
+        <span class="font-display text-lg sm:text-xl text-gold-light tracking-wide">
+          ⚔️ Herói
+        </span>
+  
+        <div class="w-full max-w-[176px] sm:max-w-[224px] h-3 bg-black/40 rounded-full overflow-hidden border border-white/10 shadow-inner">
+          <div id="playerBar" class="hp-fill h-full rounded-full bg-gradient-to-r from-emerald-700 to-emerald-400" style="width: 100%"></div>
         </div>
       </div>
 
-      <!-- COMBAT LOG -->
-      <p
-        id="log"
-        class="text-center text-xl font-bold text-gold-light tracking-wide [text-shadow:0_1px_6px_rgba(0,0,0,0.9)] min-h-[1.4em] flex-shrink-0"
-      ></p>
+      <div class="flex flex-col items-center gap-0.5 order-first md:order-none">
+        <span id="score-display"
+          class="font-display text-2xl sm:text-3xl text-gold [text-shadow:0_0_12px_rgba(212,175,55,0.6)]">
+          0 pts
+        </span>
+      </div>
+
+      <div class="flex flex-col items-center md:items-end gap-1 min-w-0 w-full md:w-auto">
+        <span
+          class="font-display text-lg sm:text-xl text-gold-light tracking-wide [text-shadow:0_1px_4px_rgba(0,0,0,0.9)]">
+          💀 Mestre das Relações
+        </span>
+
+        <div
+          class="w-full max-w-[176px] sm:max-w-[224px] h-3 bg-black/40 rounded-full overflow-hidden border border-white/10 shadow-inner">
+          <div id="enemyBar" class="hp-fill h-full rounded-full bg-gradient-to-r from-red-900 to-red-500"
+            style="width: 100%"></div>
+        </div>
+      </div>
     </div>
 
-    <div
-      id="end-screen"
-      class="hidden fixed inset-0 z-[60] bg-black/85 backdrop-blur-sm flex items-center justify-center"
-    >
-      <div
-        class="anim-zoom-in flex flex-col items-center text-center rounded-2xl border border-gold/25 shadow-panel bg-[rgba(8,5,18,0.96)] backdrop-blur-xl px-16 py-12 gap-4"
-      >
+    <div id="arena"
+      class="relative flex-1 w-full max-w-4xl mx-auto bg-[url('./image/map.png')] bg-cover bg-center rounded-2xl border-2 border-gold/25 overflow-y-auto md:overflow-hidden shadow-[0_0_60px_rgba(0,0,0,0.8)] min-h-[450px] md:min-h-0 py-6 md:py-0">
+      <div id="heroChar" class="absolute bottom-4 left-[5%] z-0">
+        <img src="./image/Personagem_Heroi.PNG" alt="Herói"
+          class="pixel anim-idle w-16 sm:w-24 md:w-[110px] h-auto [filter:drop-shadow(0_4px_12px_rgba(0,0,0,0.8))]" />
+      </div>
+
+      <div id="enemyChar" class="absolute bottom-4 right-[5%] z-0">
+        <img src="./image/Personagem_Vilão.PNG" alt="Mestre"
+          class="pixel anim-idle w-16 sm:w-24 md:w-[110px] h-auto [filter:drop-shadow(0_4px_12px_rgba(0,0,0,0.8))]" />
+      </div>
+
+      <div id="question-box"
+        class="absolute md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 top-6 left-1/2 -translate-x-1/2 w-[min(500px,92%)] z-10">
         <div
-          class="w-12 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent"
-        ></div>
+          class="rounded-2xl border border-gold/25 shadow-panel bg-[rgba(5,3,14,0.93)] backdrop-blur-md px-4 sm:px-5 py-3 sm:py-4">
+          <p id="question-text"
+            class="text-center font-semibold text-xs sm:text-sm md:text-base text-gold-light [text-shadow:0_1px_6px_rgba(0,0,0,1)] mb-3 leading-snug">
+          </p>
+          <div id="diagram"
+            class="w-full max-w-[240px] sm:max-w-[280px] md:max-w-[300px] aspect-[3/2] mx-auto bg-black/60 border border-gold/20 rounded-xl overflow-hidden flex items-center justify-center">
+          </div>
+          <div id="options" class="flex justify-center flex-wrap gap-1.5 sm:gap-2 mt-3"></div>
+        </div>
+      </div>
+    </div>
 
-        <h1
-          id="end-title"
-          class="font-display text-[clamp(2.5rem,6vw,3.8rem)] leading-tight text-gold [text-shadow:0_0_36px_rgba(212,175,55,0.7),0_2px_0_rgba(0,0,0,1)] tracking-wide"
-        ></h1>
+    <!--Log Acerto/Erro-->
+    <p id="log"
+      class="text-center text-lg sm:text-xl font-bold text-gold-light tracking-wide [text-shadow:0_1px_6px_rgba(0,0,0,0.9)] min-h-[1.4em] flex-shrink-0">
+    </p>
 
-        <p
-          id="end-score"
-          class="text-lg text-white/70 tracking-wider font-semibold"
-        ></p>
+    <!--Butao voltar p/ menu-->
+    <div class="flex items-center justify-between w-full max-w-4xl mx-auto px-4 py-2 mt-2 flex-shrink-0">
+      <div class="md:fixed bottom-6 left-6 z-50">
+        <button id="back-menu"
+          class="font-display text-base sm:text-xl text-gold-light tracking-wide [text-shadow:0_1px_4px_rgba(0,0,0,0.9)] hover:scale-105 active:scale-95 transition-transform">
+          ⏪ Voltar para o menu
+        </button>
+      </div>
 
-        <div
-          class="w-12 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent mb-2"
-        ></div>
-
-        <button
-          id="restart-btn"
-          class="w-64 py-4 font-display text-xl tracking-widest text-white rounded-lg bg-gradient-to-br from-amber-500 to-amber-800 border border-amber-400/30 shadow-btn hover:scale-[1.04] hover:brightness-110 active:scale-[0.97] transition-all duration-150 [text-shadow:0_1px_6px_rgba(0,0,0,0.7)]"
-        >
-          JOGAR NOVAMENTE
+      <!--Butao de skip da questao-->
+      <div class="md:fixed bottom-6 right-6 z-50">
+        <button id="skip-quest"
+          class="font-display text-base sm:text-xl text-gold-light tracking-wide [text-shadow:0_1px_4px_rgba(0,0,0,0.9)] hover:scale-105 active:scale-95 transition-transform">
+          ⏩ Skip
         </button>
       </div>
     </div>
+  </div>
 
-    <!-- AUDIO -->
-    <audio
-      id="snd-click"
-      src="./Songs/click.mp3"
-      preload="auto"
-    ></audio>
-    <audio
-      id="snd-hit"
-      src="./Songs/hit.mp3"
-      preload="auto"
-    ></audio>
-    <audio
-      id="snd-error"
-      src="./Songs/wrong.mp3"
-      preload="auto"
-    ></audio>
-    <audio
-      id="snd-win"
-      src="./Songs/correct.mp3"
-      preload="auto"
-    ></audio>
-    <audio 
-      id="snd-lose"
-      src="./Songs/lose.mp3"
-    ></audio>
+  <!--End scrren-->
+  <div id="end-screen"
+    class="hidden fixed inset-0 z-[60] bg-black/85 backdrop-blur-sm flex items-center justify-center">
+    <div
+      class="anim-zoom-in flex flex-col items-center text-center rounded-2xl border border-gold/25 shadow-panel bg-[rgba(8,5,18,0.96)] backdrop-blur-xl px-16 py-12 gap-4">
+      <div class="w-12 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent"></div>
 
-    <script type="module" src="src/controllers/GameController.js"></script>
-  </body>
+      <h1 id="end-title"
+        class="font-display text-[clamp(2.5rem,6vw,3.8rem)] leading-tight text-gold [text-shadow:0_0_36px_rgba(212,175,55,0.7),0_2px_0_rgba(0,0,0,1)] tracking-wide">
+      </h1>
+
+      <p id="end-score" class="text-lg text-white/70 tracking-wider font-semibold"></p>
+
+      <div class="w-12 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent mb-2"></div>
+
+      <button id="restart-btn"
+        class="w-64 py-4 font-display text-xl tracking-widest text-white rounded-lg bg-gradient-to-br from-amber-500 to-amber-800 border border-amber-400/30 shadow-btn hover:scale-[1.04] hover:brightness-110 active:scale-[0.97] transition-all duration-150 [text-shadow:0_1px_6px_rgba(0,0,0,0.7)]">
+        JOGAR NOVAMENTE
+      </button>
+    </div>
+  </div>
+
+  <!-- AUDIO -->
+  <audio id="snd-click" src="./Songs/click.mp3" preload="auto"></audio>
+  <audio id="snd-hit" src="./Songs/hit.mp3" preload="auto"></audio>
+  <audio id="snd-error" src="./Songs/wrong.mp3" preload="auto"></audio>
+  <audio id="snd-win" src="./Songs/correct.mp3" preload="auto"></audio>
+  <audio id="snd-lose" src="./Songs/lose.mp3"></audio>
+
+  <script type="module" src="src/controllers/GameController.js"></script>
+</body>
+
 </html>

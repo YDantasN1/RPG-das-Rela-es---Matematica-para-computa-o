@@ -78,6 +78,24 @@ function restartGame() {
   show("menu");
 }
 
+function backMenu() {
+  hide("game-view");
+  show("menu");
+}
+
+function skipQuestion() {
+  const { locked, playerHP, enemyHP, difficulty } = getState();
+  
+  // Se as respostas estiverem travadas ou alguém já morreu, não deixa pular
+  if (locked || playerHP <= 0 || enemyHP <= 0) return;
+
+  // Reseta o log de combate indicando que pulou
+  setLog("Questão pulada!");
+  
+  // Gera uma nova questão usando a dificuldade atualizada do estado
+  generateQuestion(difficulty, onAnswer);
+}
+
 function dismissIntro() {
   const intro = document.getElementById("intro");
   intro.classList.add("anim-intro-out");
@@ -98,6 +116,8 @@ function bindEvents() {
   });
 
   document.getElementById("restart-btn").addEventListener("click", restartGame);
+  document.getElementById("back-menu").addEventListener("click", backMenu);
+  document.getElementById("skip-quest").addEventListener("click", skipQuestion);
 }
 
 bindEvents();
