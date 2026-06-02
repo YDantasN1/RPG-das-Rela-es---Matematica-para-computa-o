@@ -18,14 +18,20 @@ import {
 const DOMAIN = [1, 2, 3];
 
 let currentAnswer = "";
+let currentTopic = "Geral";
 let answerCallback = () => {};
 
 function getCurrentAnswer() {
   return currentAnswer;
 }
 
-function applyQuestion({ answer, question, options }) {
+function getCurrentTopic() {
+  return currentTopic;
+}
+
+function applyQuestion({ answer, question, options, topic }) {
   currentAnswer = answer;
+  currentTopic = topic || "Geral";
   setQuestion(question);
   renderAnswerButtons(options, answerCallback);
 }
@@ -33,10 +39,12 @@ function applyQuestion({ answer, question, options }) {
 function buildEasyQuestion() {
   const { pairs, codomain, isFunc } = buildEasyPairs();
   drawDiagram(pairs, codomain);
+
   applyQuestion({
     answer: isFunc ? "E funcao" : "Nao e funcao",
     question: "Esse diagrama representa uma funcao?",
     options: ["E funcao", "Nao e funcao"],
+    topic: "É função",
   });
 }
 
@@ -49,26 +57,31 @@ function buildNormalQuestion() {
       answer: `{${DOMAIN.join(",")}}`,
       question: "Qual e o dominio (A) da relacao?",
       options: [`{${DOMAIN.join(",")}}`, "{1,2}", "{2,3}", "{1,3}"],
+      topic: "Domínio",
     },
     {
       answer: isReflexive(pairs, DOMAIN) ? "Sim" : "Nao",
       question: "A relacao e Reflexiva?",
       options: ["Sim", "Nao"],
+      topic: "Reflexiva",
     },
     {
       answer: isSymmetric(pairs) ? "Sim" : "Nao",
       question: "A relacao e Simetrica?",
       options: ["Sim", "Nao"],
+      topic: "Simétrica",
     },
     {
       answer: isAntisymmetric(pairs) ? "Sim" : "Nao",
       question: "A relacao e Antissimetrica?",
       options: ["Sim", "Nao"],
+      topic: "Antissimétrica",
     },
     {
       answer: isTransitive(pairs) ? "Sim" : "Nao",
       question: "A relacao e Transitiva?",
       options: ["Sim", "Nao"],
+      topic: "Transitiva",
     },
   ];
 
@@ -90,36 +103,43 @@ function buildHardQuestion() {
       answer: isFunc ? "E funcao" : "Nao e funcao",
       question: "E uma funcao?",
       options: ["E funcao", "Nao e funcao"],
+      topic: "É função",
     },
     {
       answer: `{${imgSet.join(",")}}`,
       question: "Qual a Imagem (Im)?",
       options: [`{${imgSet.join(",")}}`, ...generateWrongSets(imgSet)],
+      topic: "Imagem",
     },
     {
       answer: `{${codomain.join(",")}}`,
       question: "Qual o Contradominio (CD)?",
       options: [`{${codomain.join(",")}}`, "{1,2,3}", "{1,2,3,4}"],
+      topic: "Contradomínio",
     },
     {
       answer: isInjective(pairs) ? "Sim" : "Nao",
       question: "A funcao e Injetora?",
       options: ["Sim", "Nao"],
+      topic: "Injetora",
     },
     {
       answer: isSurjective(pairs, codomain) ? "Sim" : "Nao",
       question: "A funcao e Sobrejetora?",
       options: ["Sim", "Nao"],
+      topic: "Sobrejetora",
     },
     {
       answer: isBijective(pairs, codomain) ? "Sim" : "Nao",
       question: "A funcao e Bijetora?",
       options: ["Sim", "Nao"],
+      topic: "Bijetora",
     },
     {
       answer: hasElementWithoutImage(pairs, DOMAIN) ? "Sim" : "Nao",
       question: "Ha elemento no dominio sem imagem?",
       options: ["Sim", "Nao"],
+      topic: "Elemento sem imagem",
     },
   ];
 
@@ -136,4 +156,4 @@ function generateQuestion(difficulty, onSelect) {
   else buildHardQuestion();
 }
 
-export { generateQuestion, getCurrentAnswer };
+export { generateQuestion, getCurrentAnswer, getCurrentTopic };
