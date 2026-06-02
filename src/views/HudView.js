@@ -1,15 +1,26 @@
 function updateScore(points) {
-  document.getElementById("score-display").textContent = `${points} pts`;
+  const el = document.getElementById("score-display");
+  if (!el) return;
+  el.textContent = `${points} pts`;
 }
 
 function updateBars(playerHP, enemyHP) {
-  document.getElementById("playerBar").style.width =
-    Math.max(0, playerHP) + "%";
-  document.getElementById("enemyBar").style.width = Math.max(0, enemyHP) + "%";
+  const playerBar = document.getElementById("playerBar");
+  const enemyBar = document.getElementById("enemyBar");
+
+  if (playerBar) {
+    playerBar.style.width = Math.max(0, playerHP) + "%";
+  }
+
+  if (enemyBar) {
+    enemyBar.style.width = Math.max(0, enemyHP) + "%";
+  }
 }
 
 function setLog(message) {
-  document.getElementById("log").textContent = message;
+  const el = document.getElementById("log");
+  if (!el) return;
+  el.textContent = message;
 }
 
 function updateTimerDisplay(timeLeft) {
